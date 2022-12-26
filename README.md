@@ -16,7 +16,7 @@ To run the game you just need to follow the next steps:
 ```sh
 git clone
 cd rps-game
+python3 -m venv env
 source env/bin/activate
-pip3 install -r requirements.txt
 python3 main.py
 ```
