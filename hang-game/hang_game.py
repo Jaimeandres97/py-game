@@ -1,6 +1,7 @@
 import random
 import functools
 import os
+import sys
 
 def clear():
     if os.name == "nt":
@@ -9,12 +10,22 @@ def clear():
         os.system("clear")
 
 def game():
+    #Funcion para reiniciar el juego al terminar
+    def replay():
+        select = input('¿Quieres jugar nuevamente (Selecciona [Y/n])?: ').upper()
+        if select == 'Y':
+            clear()
+            game()
+        elif select == 'N':
+            return sys.exit()
+
     words = ['CASA', 'PERRO', 'GATO', 'PYTHON']
     letter_list = []
     lifes = 5
 
     game_word = random.choice(words)
-    print(game_word)
+    #Solo para pruebas
+    #print(game_word)
     game_var = list('_'*len(game_word))
     print('*'*7, 'JUEGO DEL AHORCADO', '*'*7)
 
@@ -54,23 +65,13 @@ def game():
             clear()
             print('*'*7, 'JUEGO DEL AHORCADO', '*'*7)
             print('*'*7, '¡FELICITACIONES HAS GANADO!', '*'*7)    
-            select = input('¿Quieres jugar nuevamente (Selecciona [Y/n])?: ').upper()
-            if select == 'Y':
-                clear()
-                game()
-            elif select == 'N':
-                return exit
+            replay()
     
     if lifes == 0:
         clear()
         print('*'*7, 'JUEGO DEL AHORCADO', '*'*7)
         print('*'*7, 'LO SENTIMOS HAS PERDIDO', '*'*7)
-        replay = input('¿Quieres jugar nuevamente (Selecciona [Y/n])?: ').upper()
-        if replay == 'Y':
-            clear()
-            game()
-        elif replay == 'N':
-            return exit
+        replay()
 
 if __name__ == '__main__':
     game()
