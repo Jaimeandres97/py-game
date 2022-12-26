@@ -18,18 +18,23 @@ def game():
             game()
         elif select == 'N':
             return sys.exit()
+        else:
+            clear()
+            print('Porfavor selecciona una opcion valida')
+            replay()
 
     words = ['CASA', 'PERRO', 'GATO', 'PYTHON']
     letter_list = []
     lifes = 5
 
     game_word = random.choice(words)
+    clear()
     #Solo para pruebas
     #print(game_word)
     game_var = list('_'*len(game_word))
     print('*'*7, 'JUEGO DEL AHORCADO', '*'*7)
 
-    while lifes > 0:
+    while lifes != 0:
         show_var = functools.reduce(lambda counter, item: counter+item, game_var)
         
         print('Descubre la palabra: ', show_var)
