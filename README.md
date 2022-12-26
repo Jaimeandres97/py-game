@@ -16,7 +16,5 @@ To run the game you just need to follow the next steps:
 ```sh
 git clone
 cd rps-game
-python3 -m venv env
-source env/bin/activate
 python3 main.py
 ```
