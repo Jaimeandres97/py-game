@@ -2,6 +2,7 @@ import random
 import functools
 import os
 import sys
+import hang_figs as figs
 
 def clear():
     if os.name == "nt":
@@ -25,7 +26,7 @@ def game():
 
     words = ['CASA', 'PERRO', 'GATO', 'PYTHON']
     letter_list = []
-    lifes = 5
+    lifes = 6
 
     game_word = random.choice(words)
     clear()
@@ -33,6 +34,7 @@ def game():
     #print(game_word)
     game_var = list('_'*len(game_word))
     print('*'*7, 'JUEGO DEL AHORCADO', '*'*7)
+    figs.lifes_count(lifes)
 
     while lifes != 0:
         show_var = functools.reduce(lambda counter, item: counter+item, game_var)
@@ -56,6 +58,7 @@ def game():
                 letter_list.append(player_letter)
                 if player_letter not in game_word: 
                     lifes -= 1
+                    figs.lifes_count(lifes)
                     clear() 
                 else:
                     for i in range(len(game_word)):
@@ -64,18 +67,21 @@ def game():
                             clear()
             
             print('*'*7, 'JUEGO DEL AHORCADO', '*'*7)
-            print(f'Has utilizado estas letras: {sorted(letter_list)}')   
+            print(f'Has utilizado estas letras: {sorted(letter_list)}')
+            figs.lifes_count(lifes)   
 
         else:
             clear()
             print('*'*7, 'JUEGO DEL AHORCADO', '*'*7)
-            print('*'*7, '¡FELICITACIONES HAS GANADO!', '*'*7)    
+            print('*'*7, '¡FELICITACIONES HAS GANADO!', '*'*7) 
+            figs.lifes_count(lifes)   
             replay()
     
     if lifes == 0:
         clear()
         print('*'*7, 'JUEGO DEL AHORCADO', '*'*7)
         print('*'*7, 'LO SENTIMOS HAS PERDIDO', '*'*7)
+        figs.lifes_count(lifes)
         replay()
 
 if __name__ == '__main__':
